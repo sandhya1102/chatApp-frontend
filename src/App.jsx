@@ -7,11 +7,16 @@ import io from "socket.io-client";
 import { useEffect } from "react";
 import { setSocket } from "./redux/socketSlice";
 import { setOnlineUsers } from "./redux/userSlice";
+import ProtectedRoutes from "./components/ProtechtedRoutes";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Homepage />,
+    element: (
+      <ProtectedRoutes>
+        <Homepage />
+      </ProtectedRoutes>
+    ),
   },
   {
     path: "/login",
@@ -30,7 +35,7 @@ function App() {
 
   useEffect(() => {
     if (authUser) {
-      const newsocket = io("https://chatapp-mern-stack-1.vercel.app", {
+      const newsocket = io(import.meta.env.VITE_API_URL, {
         query: {
           userId: authUser._id,
         },
