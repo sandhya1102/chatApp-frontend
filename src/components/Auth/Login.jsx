@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
-import axios from "../api/axiosInstance";
+import axios from "../api/axiosInstance.js";
 import { useDispatch } from "react-redux";
 import { USER_API_END_POINT } from "../../utils/constant";
 import { setAuthUser } from "../../redux/userSlice";
