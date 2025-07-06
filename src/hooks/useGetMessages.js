@@ -1,29 +1,34 @@
-import axios from '../components/api/axiosInstance';
-import React, { useEffect } from 'react'
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import axios from '../api/axiosInstance';
 import { setMessages } from '../redux/messageSlice';
-import { MESSAGE_API_END_POINT } from '../utils/constant.js';
 
 const useGetMessages = () => {
-    const {selectedUser} = useSelector(store=>store.user);
-    const dispatch = useDispatch();
-   useEffect(()=>{
-      if (!selectedUser?._id) return;
+  const { selectedUser } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
 
-        const fetchMessages = async ()=>{
-            try {
-                const res = await axios.get(`${MESSAGE_API_END_POINT}${selectedUser._id}`,{
-                    withCredentials:true
-                })
-                dispatch(setMessages(res.data))
-                
-            } catch (error) {
-                console.error(error);
-                
-            }
+  useEffect(() => {
+    const fetchMessages = async () => {
+      try {
+        const res = await axios.get(`/api/v1/message/${selectedUser?._id}`, {
+          withCredentials: true
+        });
+
+        if (Array.isArray(res.data)) {
+          dispatch(setMessages(res.data)); 
+        } else {
+          dispatch(setMessages([])); 
         }
-        fetchMessages();
-    },[selectedUser])
-}
+      } catch (error) {
+        console.error("Error fetching messages", error);
+        dispatch(setMessages([]));
+      }
+    };
 
-export default useGetMessages
+    if (selectedUser?._id) {
+      fetchMessages();
+    }
+  }, [selectedUser?._id, dispatch]);
+};
+
+export default useGetMessages;
