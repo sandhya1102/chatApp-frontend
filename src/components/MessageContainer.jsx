@@ -12,7 +12,7 @@ const MessageContainer = () => {
 
   if (!selectedUser) {
     return (
-      <div className="w-full h-[90vh] flex flex-col items-center justify-center text-gray-600">
+      <div className="w-full lg:h-[90vh] h-[80px] flex flex-col items-center justify-center text-gray-600">
         <img
           src="https://cdn-icons-gif.flaticon.com/15332/15332410.gif"
           alt="Start Chat"
@@ -29,7 +29,7 @@ const MessageContainer = () => {
   }
 
   return (
-    <div className="border-b w-full border-gray-200 ">
+    <div className="border-b w-full border-gray-200 h-[calc(100vh-90px)]">
       <div className="flex items-center justify-between bg-gray-300 p-2">
         <div className="flex items-center gap-3">
           <div className="relative">

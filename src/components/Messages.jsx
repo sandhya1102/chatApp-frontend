@@ -9,7 +9,7 @@ const Messages = () => {
   const { messages } = useSelector((store) => store.message);
 
   return (
-    <div className="px-4 mt-3 flex-1 overflow-auto h-[72vh]">
+    <div className="px-4 mt-3 flex-1 overflow-auto lg:h-[72vh] h-[76vh]">
       {messages && messages.length > 0 ? (
         messages.map((message) => (
           <Message key={message._id} message={message} />
