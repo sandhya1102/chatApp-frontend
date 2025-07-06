@@ -11,7 +11,7 @@ const Homepage = () => {
         {/* Sidebar: hide on mobile if user is selected */}
         <div className={`
           ${selectedUser ? 'hidden' : 'block'} 
-          md:block sm:block
+          md:block 
         `}>
           <Sidebar />
         </div>
