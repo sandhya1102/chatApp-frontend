@@ -7,7 +7,7 @@ import io from "socket.io-client";
 import { useEffect } from "react";
 import { setSocket } from "./redux/socketSlice";
 import { setOnlineUsers } from "./redux/userSlice";
-import ProtectedRoutes from "./components/ProtechtedRoutes";
+import ProtectedRoutes from "./components/ProtectedRoutes";
 
 const router = createBrowserRouter([
   {
