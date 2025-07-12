@@ -4,7 +4,7 @@ import toast from "react-hot-toast";
 import axios from "../api/axiosInstance.js";
 import { useDispatch } from "react-redux";
 import { USER_API_END_POINT } from "../../utils/constant";
-import { setAuthUser } from "../../redux/userSlice";
+import { setAuthenticated, setAuthUser } from "../../redux/userSlice";
 
 export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
@@ -34,6 +34,7 @@ export default function Login() {
       });
       navigate("/");
       dispatch(setAuthUser(res.data));
+      dispatch(setAuthenticated(true))
     } catch (error) {
       toast.error(error?.response?.data?.message);
       console.error(error);
